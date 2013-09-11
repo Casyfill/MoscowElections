@@ -1,0 +1,33 @@
+import p_fileWrangler
+
+
+path1 = 'F:/My Dropbox/RIA/2013_08_06_MoscowElections/data/history/duma_fin3c.csv'
+
+def xmlProduce(cell, name):
+	print '<%s>%s</%s>' %(name,str(cell),name)
+
+data = p_fileWrangler.readRows(path1)
+print len(data)
+headers = data[0].replace('\n','').split(';')
+data.pop(0)
+
+print '<data>'
+print '<rs>'
+for row in data:
+	array = row.split(';')
+
+	print '<r>'
+	xmlProduce(array[1].replace(',','.'),headers[1])
+	xmlProduce(array[2].replace(',','.'),headers[2])
+	xmlProduce(array[3].replace(',','.'),headers[3])
+	xmlProduce(array[4].replace(',','.'),headers[4])
+	xmlProduce(array[5].replace(',','.'),headers[5])
+	xmlProduce(array[6].replace(',','.'),headers[6])
+	xmlProduce(array[7].replace(',','.'),headers[7])
+	xmlProduce(array[8].replace('\n','').replace(',','.'),headers[8])
+	xmlProduce(array[9].replace('\n','').replace(',','.'),headers[9])
+
+
+	print '</r>'
+print '</rs>'
+print '</data>'
